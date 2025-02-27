@@ -9,6 +9,7 @@ DESTDIR=debug
 DESTDIR=release
 }
 
+QT += widgets
 QT += xml 
 
 DEFINES += QT_XML_LIB USING_PCH

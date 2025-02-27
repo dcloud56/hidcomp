@@ -19,7 +19,7 @@
 
 // emc files
 #include "emcglb.h"
-#include "config.h"
+// #include "config.h"
 #include "inifile.hh"
 #include "timer.hh"
 #include "nml_oi.hh"
@@ -101,12 +101,12 @@ bool EmcInterface::iniLoad(const char *filename)
 	return false;
     }
 
-    inistring = inifile.Find("DEBUG", "EMC");
+    inistring = inifile.Find("DEBUG", "EMC").value_or("");
     if ( inistring != NULL ) 
 	m_bEmcDebug = QString( inistring ).toInt() != 0;
 
 
-    inistring = inifile.Find("NML_FILE", "EMC");
+    inistring = inifile.Find("NML_FILE", "EMC").value_or("");
     if ( inistring != NULL ) 
     {
 	strcpy(EMC_NMLFILE, inistring);
@@ -441,16 +441,16 @@ int EmcInterface::GetIntData( ELCDDisplayData::ELCDDisplayData eData, int nIndex
     switch ( eData )
     {
 	case ELCDDisplayData::TaskMode:
-	    return m_emcStatus->task.mode & 0xFF;
+	    return (int)m_emcStatus->task.mode & 0xFF;
 
 	case ELCDDisplayData::TaskState:
-	    return m_emcStatus->task.state & 0xFF;
+	    return (int)m_emcStatus->task.state & 0xFF;
 
 	case ELCDDisplayData::TaskExecState:
-	    return m_emcStatus->task.execState & 0xFF;
+	    return (int)m_emcStatus->task.execState & 0xFF;
 
 	case ELCDDisplayData::TaskInterpState:
-	    return m_emcStatus->task.interpState & 0xFF;
+	    return (int)m_emcStatus->task.interpState & 0xFF;
 
 	case ELCDDisplayData::TaskMotionLine:
 	    return m_emcStatus->task.motionLine;
@@ -478,7 +478,7 @@ int EmcInterface::GetIntData( ELCDDisplayData::ELCDDisplayData eData, int nIndex
 	    return m_emcStatus->task.task_paused & 0xFF;
 
 	case ELCDDisplayData::MotionTrajMode: 
-	    return m_emcStatus->motion.traj.mode & 0xFF; 
+	    return (int)m_emcStatus->motion.traj.mode & 0xFF; 
 
 	case ELCDDisplayData::MotionTrajEnabled:  
 	    return m_emcStatus->motion.traj.enabled;
@@ -586,13 +586,13 @@ int EmcInterface::GetIntData( ELCDDisplayData::ELCDDisplayData eData, int nIndex
 
 	case ELCDDisplayData::IOAuxEStop:
 	    return m_emcStatus->io.aux.estop;
-
+/*
 	case ELCDDisplayData::IOLubeOn:
 	    return m_emcStatus->io.lube.on;
 
 	case ELCDDisplayData::IOLubeLevel:
 	    return m_emcStatus->io.lube.level;
-
+*/
 	default:
 	    assert( false );
 	    break;

@@ -169,7 +169,7 @@ static LCDData *FindData( ELCDDisplayData::ELCDDisplayData nId )
 
 LCDConfigDlg::LCDConfigDlg(HIDLCD *pLCDData, HIDLCDDevice &lcdDevice, QWidget *parent)
 : QDialog(parent)
-, m_Logger( QCoreApplication::applicationName().toAscii().constData(), "LCDConfigDlg" )
+, m_Logger( QCoreApplication::applicationName().toLatin1().constData(), "LCDConfigDlg" )
 , m_LCDDevice( lcdDevice )
 , m_bUpdating( false )
 , m_pCurrentPage( NULL )
@@ -594,7 +594,7 @@ QString LCDConfigDlg::FormatData( ELCDDisplayData::ELCDDisplayData entryType, co
     {
         case StringType:
             if ( value.canConvert(QVariant::String) )
-                return FormatData( &sFormat, value.toString().toAscii().constData() );
+                return FormatData( &sFormat, value.toString().toLatin1().constData() );
             break;
         case IntType: 
             if ( value.canConvert(QVariant::Int) )
@@ -637,7 +637,7 @@ QString LCDConfigDlg::FormatData( const QString *sFormat, ... )
 	else
 	    s = sDefault;
 
-	return LCDDataFormatter::snprintf( newFormatString.constData(), s.toAscii().constData() );
+	return LCDDataFormatter::snprintf( newFormatString.constData(), s.toLatin1().constData() );
     }
     else
 	return LCDDataFormatter::vsnprintf( newFormatString.constData(), args );

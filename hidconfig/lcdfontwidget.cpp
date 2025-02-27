@@ -107,7 +107,7 @@ QSize LCDFontWidget::sizeHint() const
 void LCDFontWidget::mousePressEvent( QMouseEvent * event )
 {
     int r, c;
-    if ( cellHit( event->posF(), r, c ) )
+    if ( cellHit( event->pos(), r, c ) )
     {
 	if ( event->button() == Qt::LeftButton )
 	    setCell( r, c, true );

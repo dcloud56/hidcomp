@@ -52,7 +52,7 @@ static QString MakeDeviceName( HIDDevice &device )
 
 
 
-SelectDevice::SelectDevice(HIDDevices &hidDevices, QWidget *parent, Qt::WFlags flags)
+SelectDevice::SelectDevice(HIDDevices &hidDevices, QWidget *parent, Qt::WindowFlags flags)
 : QDialog(parent, flags)
 , m_pSelection( NULL )
 , m_hidDevices( hidDevices )

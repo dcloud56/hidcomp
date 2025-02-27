@@ -40,7 +40,7 @@ static bool isOctal( QChar c, int &n )
 {
     if ( c.isDigit() && c >= QChar('0') && c <= QChar('7') )
     {
-	n = c.toAscii() - '0';
+	n = c.toLatin1() - '0';
 	return true;
     }
     return false;
@@ -50,7 +50,7 @@ static bool isHex( QChar c, int &n )
 {
     if ( c >= QChar('0') && c <= QChar('9') )
     {
-	n = c.toAscii() - '0';
+	n = c.toLatin1() - '0';
 	return true;
     }
     else
@@ -58,7 +58,7 @@ static bool isHex( QChar c, int &n )
 	c = c.toUpper();
 	if ( c >= QChar('A') && c <= QChar('F') )
 	{
-	    n = c.toAscii() - 'A' + 10;
+	    n = c.toLatin1() - 'A' + 10;
 	    return true;
 	}
     }
@@ -79,7 +79,7 @@ static QString ProcessEscapeSequences( const QString &sFormatString )
 	    {
 		int n;
 		c = sFormatString[i];
-		switch ( c.toAscii() )
+		switch ( c.toLatin1() )
 		{
 		    case 'a': sRet += QChar('\a'); continue;
 		    case 'b': sRet += QChar('\b'); continue;
@@ -185,7 +185,7 @@ bool LCDDataFormatter::ProcessFormatString( const QString &sFormatString, QByteA
         }
     }
 
-    newFormatString = sNewFormat.toAscii();
+    newFormatString = sNewFormat.toLatin1();
 
     return true;
 }

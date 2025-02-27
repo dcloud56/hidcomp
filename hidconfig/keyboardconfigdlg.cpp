@@ -25,7 +25,7 @@
 
 KeyboardConfigDlg::KeyboardConfigDlg(HIDKeyboardMap *pKBData, HIDDevice *pDevice, HIDKBDevice &kbDevice, QWidget *parent)
 : QDialog(parent)
-, m_Logger( QCoreApplication::applicationName().toAscii().constData(), "KeyboardConfigDlg" )
+, m_Logger( QCoreApplication::applicationName().toLatin1().constData(), "KeyboardConfigDlg" )
 , m_KBDevice( kbDevice )
 , m_bUpdating( false )
 {
